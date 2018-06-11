@@ -1,0 +1,12 @@
+body {
+	width: 250px;
+	font-size: 8pt !important;
+}
+
+.table td, .table th {
+	padding: 0.30rem;
+}
+
+.card-header {
+	font-size: 10pt;
+}
