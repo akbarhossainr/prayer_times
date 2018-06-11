@@ -12,15 +12,16 @@ function showPosition(position) {
 }
 
 function showPrayTimes(lat, long, prayTimes) {
-	var prayTimes = prayTimes.getTimes(new Date(), [lat, long], +6, 0, '12h');
+	var paryerTimes = prayTimes.adjust( {asr: 'Hanafi', maghrib: '3 min'} );
+	var paryerTimes = prayTimes.getTimes(new Date(), [lat, long], +6, 0, '12h');
 
-	var list = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha', 'Midnight'];
+	var list = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Sunset', 'Maghrib', 'Isha', 'Midnight'];
 
 	var html = '<table id="timetable" class="table table-bordered table-hover">';
 	html += '<tr><th colspan="2">'+ new Date().toLocaleString()+ '</th></tr>';
 	for(var i in list)	{
 		html += '<tr><td>'+ list[i]+ '</td>';
-		html += '<td class="text-right">'+ prayTimes[list[i].toLowerCase()]+ '</td></tr>';
+		html += '<td class="text-right">'+ paryerTimes[list[i].toLowerCase()]+ '</td></tr>';
 	}
 	html += '</table>';
 
