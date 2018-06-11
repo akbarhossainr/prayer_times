@@ -1,0 +1,14 @@
+{
+	"manifest_version": 2,
+
+	"name": "Get Pray Times",
+	"description": "Know your pray times",
+	"version": "1.0",
+
+	"browser_action": {
+		"default_popup": "index.html"
+	},
+	"permissions":[
+		"geolocation"
+	]
+}
