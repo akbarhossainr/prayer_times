@@ -7,6 +7,10 @@ body {
 	padding: 0.30rem;
 }
 
+.table {
+	margin-bottom: 0;
+}
+
 .card-header {
 	font-size: 10pt;
 }
