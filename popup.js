@@ -5,7 +5,7 @@ function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
-        console.log("Geolocation is not supported by this browser");
+        console.log("Geo location is not supported by this browser");
     }
 }
 
@@ -20,7 +20,7 @@ function showPrayTimes(lat, long, prayTimes) {
 
 	var list = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Sunset', 'Maghrib', 'Isha', 'Midnight'];
 	var html = '<table id="timetable" class="table table-bordered table-hover">';
-	html += '<tr><th colspan="2">'+moment().format('LLLL')+ '</th></tr>';
+	html += '<tr><th colspan="2">'+moment().format('MMMM Do YYYY, h:mm:ss a')+ '</th></tr>';
 
 	var listLength = list.length;
 	for (var i = 0; i < listLength; i++) {
@@ -50,5 +50,4 @@ function showPrayTimes(lat, long, prayTimes) {
 
 	document.getElementById('divShowPrayTimes').innerHTML = html;
 }
-
-getLocation();
+var interval = setInterval(getLocation, 1000);
