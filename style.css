@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=ABeeZee');
+
 body {
 	width: 250px;
-	font-size: 8pt !important;
+	font-family: 'ABeeZee', sans-serif;
 }
 
 .table td, .table th {
@@ -8,9 +10,24 @@ body {
 }
 
 .table {
+	font-size: 10pt !important;
 	margin-bottom: 0;
 }
 
+tr.active {
+	background-color: #EDEDED;
+}
+tr.active th {
+	background-color: #EDEDED;
+}
+
+.card {
+}
+
 .card-header {
-	font-size: 10pt;
+	background-image: url('bg2.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: top;
+	font-size: 18pt;
 }
