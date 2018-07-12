@@ -1,8 +1,8 @@
 {
 	"manifest_version": 2,
 
-	"name": "Get Pray Times",
-	"description": "Know your pray times",
+	"name": "Prayer Times",
+	"description": "An extensions for getting real time Prayer Times and Update.",
 	"version": "1.0",
 
 	"browser_action": {
@@ -10,5 +10,8 @@
 	},
 	"permissions":[
 		"geolocation"
-	]
+	],
+	"icons": { "16": "favicon.png",
+	           "48": "favicon.png",
+	          "128": "favicon.png" }
 }
