@@ -20,7 +20,6 @@ function showPrayTimes(lat, long, prayTimes) {
 
 	var list = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Sunset', 'Maghrib', 'Isha', 'Midnight'];
 	var html = '<table id="timetable" class="table table-bordered table-hover">';
-	html += '<tr class="active"><th colspan="2">'+moment().format('MMMM Do YYYY, h:mm:ss a')+ '</th></tr>';
 	var nextPrayerTime;
 	var nextPrayerTimeRemaining;
 	var nextPrayerTimeName;
@@ -56,10 +55,17 @@ function showPrayTimes(lat, long, prayTimes) {
 		html += '<td class="text-right">'+ paryerTimes[list[i].toLowerCase()]+ '</td></tr>';
 
 	}
-	html += '<tfoot><tr class="text-center"><td colspan="2">Next Prayer Time<br> '+nextPrayerTimeName+' '+nextPrayerTimeRemaining+'</td></tfoot>';
+	html += '<tfoot><tr class="text-center"><td colspan="2"><strong>Next Prayer Time</strong><br> '+nextPrayerTimeName+' '+nextPrayerTimeRemaining+'</td></tfoot>';
 
 	html += '</table>';
 
 	document.getElementById('divShowPrayTimes').innerHTML = html;
 }
+
 var interval = setInterval(getLocation, 100);
+
+// Set current date and time on card header
+function setCurrentDateTime() {
+	document.getElementById("currentDateTime").innerHTML = moment().format('MMMM Do YYYY, h:mm:ss a');
+}
+var interval = setInterval(setCurrentDateTime, 100);

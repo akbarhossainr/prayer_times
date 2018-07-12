@@ -21,13 +21,19 @@ tr.active th {
 	background-color: #EDEDED;
 }
 
-.card {
+.card-body {
+	padding: 0;
 }
 
 .card-header {
-	background-image: url('bg2.png');
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: top;
-	font-size: 18pt;
+	text-align: center;
+}
+.card-title {
+	font-size: 14pt;
+	margin: 0;
+}
+
+#currentDateTime {
+	font-size: 10pt;
+	margin: 0;
 }
