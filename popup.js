@@ -3,10 +3,14 @@
 // get current location
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
+        navigator.geolocation.getCurrentPosition(showPosition, error);
     } else {
         console.log("Geo location is not supported by this browser");
     }
+}
+
+function error(error) {
+	console.log(error.code, error.message);
 }
 
 function showPosition(position) {
@@ -14,9 +18,9 @@ function showPosition(position) {
 }
 
 function showPrayTimes(lat, long, prayTimes) {
-	var paryerTimes = prayTimes.setMethod('Karachi');
-	var paryerTimes = prayTimes.adjust( {asr: 'Hanafi', maghrib: '3 min'} );
-	var paryerTimes = prayTimes.getTimes(new Date(), [lat, long], +6, 0, '12h');
+	var prayerTimes = prayTimes.setMethod('Karachi');
+	var prayerTimes = prayTimes.adjust( {asr: 'Hanafi', maghrib: '3 min'} );
+	var prayerTimes = prayTimes.getTimes(new Date(), [lat, long], +6, 0, '12h');
 
 	var list = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Sunset', 'Maghrib', 'Isha', 'Midnight'];
 	var html = '<table id="timetable" class="table table-bordered table-hover">';
@@ -29,9 +33,16 @@ function showPrayTimes(lat, long, prayTimes) {
 		// find current waqt
 		var currentWaqt = '';
 
-		var startTime = moment(paryerTimes[list[i].toLowerCase()], 'hh:mm a');
+		var startTime = moment(prayerTimes[list[i].toLowerCase()], 'hh:mm a');
 		if (list[i+1]) {
-			var endTime = moment(paryerTimes[list[i+1].toLowerCase()], 'hh:mm a');
+			var endTime = moment(prayerTimes[list[i+1].toLowerCase()], 'hh:mm a');
+		}else{
+			var endTime = moment(prayerTimes[list[0].toLowerCase()], 'hh:mm a');
+		}
+
+		if (startTime.hour() >=12 && endTime.hour() <=12 )
+		{
+			endTime.add(1, "days");       // handle spanning days
 		}
 
 		if (currentWaqt == '') {
@@ -40,19 +51,30 @@ function showPrayTimes(lat, long, prayTimes) {
 					currentWaqt = 'bg-primary';
 				}
 
-				nextPrayerTime = moment(paryerTimes[list[i+1].toLowerCase()], 'hh:mm a');
+				nextPrayerTime = moment(prayerTimes[list[i+1].toLowerCase()], 'hh:mm a');
 				nextPrayerTimeName = list[i+1];
 				if (list[i+1] == 'Sunrise' || list[i+1] == 'Sunset' || list[i+1] == 'Midnight') {
-					nextPrayerTime = moment(paryerTimes[list[i+2].toLowerCase()], 'hh:mm a');
-					nextPrayerTimeName = list[i+2];
+					if (list[i+1] == 'Midnight') {
+						nextPrayerTime = prayerTimes[list[0].toLowerCase()];
+						nextPrayerTimeName = list[0];
+					}else{
+						nextPrayerTime = prayerTimes[list[i+2].toLowerCase()];
+						nextPrayerTimeName = list[i+2];
+					}
+					nextPrayerTime = moment(nextPrayerTime, 'hh:mm a');
 				}
+
 				nextPrayerTimeRemaining = nextPrayerTime.diff(moment());
-				nextPrayerTimeRemaining = moment(nextPrayerTimeRemaining).format("mm:ss");
+				if (moment(nextPrayerTimeRemaining).hour() > 0) {
+					nextPrayerTimeRemaining = moment(nextPrayerTimeRemaining).utc().format('HH:mm:ss');
+				}else{
+					nextPrayerTimeRemaining = moment(nextPrayerTimeRemaining).utc().format('mm:ss');
+				}
 			}
 		}
 
 		html += '<tr class="'+currentWaqt+'"><td>'+ list[i]+ '</td>';
-		html += '<td class="text-right">'+ paryerTimes[list[i].toLowerCase()]+ '</td></tr>';
+		html += '<td class="text-right">'+ prayerTimes[list[i].toLowerCase()]+ '</td></tr>';
 
 	}
 	html += '<tfoot><tr class="text-center"><td colspan="2"><strong>Next Prayer Time</strong><br> '+nextPrayerTimeName+' '+nextPrayerTimeRemaining+'</td></tfoot>';

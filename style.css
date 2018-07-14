@@ -21,6 +21,9 @@ tr.active th {
 	background-color: #EDEDED;
 }
 
+.card {
+	margin: 0;
+}
 .card-body {
 	padding: 0;
 }
