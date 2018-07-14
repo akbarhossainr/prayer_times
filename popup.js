@@ -20,7 +20,7 @@ function showPosition(position) {
 function showPrayTimes(lat, long, prayTimes) {
 	var prayerTimes = prayTimes.setMethod('Karachi');
 	var prayerTimes = prayTimes.adjust( {asr: 'Hanafi', maghrib: '3 min'} );
-	var prayerTimes = prayTimes.getTimes(new Date(), [lat, long], +6, 0, '12h');
+	var prayerTimes = prayTimes.getTimes(new Date(), [lat, long, 300], +6, 0, '12h');
 
 	var list = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Sunset', 'Maghrib', 'Isha', 'Midnight'];
 	var html = '<table id="timetable" class="table table-bordered table-hover">';
