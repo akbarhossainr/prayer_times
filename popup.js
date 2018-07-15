@@ -10,7 +10,10 @@ function getLocation() {
 }
 
 function error(error) {
-	console.log(error.code, error.message);
+	// console.log(error.code, error.message);
+	if (error.code == 2) {
+		showPrayTimes(0, 0, prayTimes);
+	}
 }
 
 function showPosition(position) {

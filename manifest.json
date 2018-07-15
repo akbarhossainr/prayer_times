@@ -11,7 +11,7 @@
 	"permissions":[
 		"geolocation"
 	],
-	"icons": { "16": "favicon.png",
+	"icons": { "32": "favicon.png",
 	           "48": "favicon.png",
 	          "128": "favicon.png" }
 }
