@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 
 	"name": "Prayer Times",
-	"description": "An extensions for getting real time Prayer Times and Update.",
+	"description": "Extension that shows prayer times for given location. It show the current prayer time highlighted and next prayer time remaining.",
 	"version": "1.0",
 
 	"browser_action": {
@@ -11,7 +11,7 @@
 	"permissions":[
 		"geolocation"
 	],
-	"icons": { "32": "favicon.png",
-	           "48": "favicon.png",
-	          "128": "favicon.png" }
+	"icons": { "32": "mecca 32x32.png",
+	           "64": "mecca 64x64.png",
+	          "128": "mecca 128x128.png" }
 }
