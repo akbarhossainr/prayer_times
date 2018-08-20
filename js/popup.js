@@ -1,5 +1,3 @@
-// moment.locale('bn');
-
 function en_to_bn_number_conversion(en_number) {
 	var bn_number = '';
 
@@ -56,7 +54,7 @@ function showPosition(position) {
 }
 
 function showPrayTimes(lat, long, prayTimes) {
-
+	moment.locale('en');
 	// Method: University of Islamic Sciences, Karachi
 	// Abbr.: Karachi
 	// Region Used: Pakistan, Afganistan, Bangladesh, India
@@ -65,7 +63,7 @@ function showPrayTimes(lat, long, prayTimes) {
 	var prayerTimes = prayTimes.getTimes(new Date(), [lat, long, 300], +6, 0, '12h');
 
 	var list = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Sunset', 'Maghrib', 'Isha', 'Midnight'];
-	var listBN = ['ফজর', 'সূর্যোদয়', 'জোহর', 'আসর', 'সূর্যাস্ত', 'মাগরিব', 'ইশা'];
+	var listBN = ['ফজর', 'সূর্যোদয়', 'জোহর', 'আসর', 'সূর্যাস্ত', 'মাগরিব', 'ইশা', 'মধ্যরাত'];
 
 	var html = '<table id="timetable" class="table table-bordered table-hover">';
 	var nextPrayerTime;
@@ -101,14 +99,24 @@ function showPrayTimes(lat, long, prayTimes) {
 					if (list[i+1] == 'Midnight') {
 						nextPrayerTime = prayerTimes[list[0].toLowerCase()];
 						nextPrayerTimeName = list[0];
+						if($("input[name='lang']:checked").val() === 'bn'){
+							nextPrayerTimeName = listBN[0];
+						}
 					}else{
 						nextPrayerTime = prayerTimes[list[i+2].toLowerCase()];
 						nextPrayerTimeName = list[i+2];
+						if($("input[name='lang']:checked").val() === 'bn'){
+							nextPrayerTimeName = listBN[i+2];
+						}
 					}
 					nextPrayerTime = moment(nextPrayerTime, 'hh:mm a');
 				}
-
+				
 				nextPrayerTimeRemaining = moment(nextPrayerTime.diff(moment())).utc().format('HH:mm:ss');
+				if($("input[name='lang']:checked").val() === 'bn'){
+					nextPrayerTimeRemaining = en_to_bn_number_conversion(moment(nextPrayerTime.diff(moment())).utc().format('HH:mm:ss'));
+					nextPrayerTimeName = listBN[i+1];
+				}
 			}
 		}
 		var waqt_name = list[i];
@@ -133,6 +141,11 @@ setInterval(getLocation, 100);
 
 // Set current date and time on card header
 function setCurrentDateTime() {
+	if($("input[name='lang']:checked").val() === 'bn'){
+		moment.locale('bn');
+	}else{
+		moment.locale('en');
+	}
 	document.getElementById("currentDateTime").innerHTML = moment().format('MMMM Do YYYY, h:mm:ss a');
 }
 setInterval(setCurrentDateTime, 100);
