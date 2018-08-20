@@ -1,16 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=ABeeZee');
+@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
 body {
-	width: 250px;
-	font-family: 'ABeeZee', sans-serif;
+	font-family: 'Exo', sans-serif;
 }
 
+.btn-secondary.focus,
+.btn-secondary:focus {
+	box-shadow: none;
+}
+
+
 .table td, .table th {
-	padding: 0.30rem;
+	padding: 0.50rem;
 }
 
 .table {
-	font-size: 10pt !important;
+	font-size: 12pt !important;
 	margin-bottom: 0;
 }
 
@@ -28,12 +34,9 @@ tr.active th {
 	padding: 0;
 }
 
-.card-header {
-	text-align: center;
-}
 .card-title {
-	font-size: 14pt;
-	margin: 0;
+	font-size: 2rem;
+	font-weight: 700;
 }
 
 #currentDateTime {

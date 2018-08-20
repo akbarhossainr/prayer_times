@@ -8,15 +8,39 @@
 	<link rel="icon" href="assets/mecca 16x16.png" type="image/gif">
 </head>
 <body>
-	<div class="card">
-		<div class="card-header">
-			<h3 class="card-title">Prayer Times</h3>
-			<p id="currentDateTime"></p>
-		</div>
-		<div class="card-body">
-			<div id="divShowPrayTimes"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-4">
+				<div class="btn-group btn-group-sm btn-group-toggle mb-2 mt-2" data-toggle="buttons">
+					<label class="btn btn-secondary active">
+						<input type="radio" name="lang" id="lang-en" value="en" autocomplete="off" checked> English
+					</label>
+					<label class="btn btn-secondary">
+						<input type="radio" name="lang" id="lang-bn" value="bn" autocomplete="off"> বাংলা
+					</label>
+				</div>
+
+				<div class="card">
+					<div class="card-header">
+						<h5 class="card-title mb-1">Prayer Times</h5>
+						<p id="currentDateTime"></p>
+					</div>
+					<div class="card-body">
+						<div id="divShowPrayTimes"></div>
+					</div>
+				</div>
+				<small class="text-muted p-2">* Highlited row define the current waqt</small>
+			</div>
+			<div class="col">
+
+			</div>
 		</div>
 	</div>
+
+	<!-- Bootstrap scripts -->
+	<script type="text/javascript" src="js/bootstrap/jquery-3.3.1.slim.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap/popper.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
 
 	<script type="text/javascript" src="js/moment-with-locales.min.js"></script>
 	<script type="text/javascript" src="js/PrayTimes.js"></script>
