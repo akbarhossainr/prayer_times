@@ -125,27 +125,38 @@ function showPrayTimes(lat, long, prayTimes) {
 			paryer_time = en_to_bn_number_conversion(prayerTimes[list[i].toLowerCase()]);
 			waqt_name = listBN[i];
 		}
-
+		
 		html += '<tr class="'+currentWaqt+'"><td>'+waqt_name+ '</td>';
 		html += '<td class="text-right">'+paryer_time+ '</td></tr>';
 
+		
+		
 	}
-	html += '<tfoot><tr class="text-center"><td colspan="2"><strong>Next Prayer Time</strong><br> '+nextPrayerTimeName+' '+nextPrayerTimeRemaining+'</td></tfoot>';
+	var table_footer_title = "Next Prayer Time Remaining";
+	if($("input[name='lang']:checked").val() === 'bn'){
+		var table_footer_title = "পরবর্তী নামাজের সময় বাকী";
+	}
+
+	html += '<tfoot><tr class="text-center"><td colspan="2"><strong id="table_footer_title">'+table_footer_title+'</strong><br> '+nextPrayerTimeName+' '+nextPrayerTimeRemaining+'</td></tfoot>';
 
 	html += '</table>';
 
 	document.getElementById('divShowPrayTimes').innerHTML = html;
 }
 
-setInterval(getLocation, 100);
+setInterval(getLocation, 0);
 
 // Set current date and time on card header
 function setCurrentDateTime() {
 	if($("input[name='lang']:checked").val() === 'bn'){
 		moment.locale('bn');
+		document.getElementById("table_header_title").innerHTML = "নামাজের সময়";
+		document.getElementById("footer_note").innerHTML = "* উজ্জ্বল সারি বর্তমান ওয়াক্ত প্রকাশ করে";
 	}else{
 		moment.locale('en');
+		document.getElementById("table_header_title").innerHTML = "Prayer Times";
+		document.getElementById("footer_note").innerHTML = "* Highlited row define the current waqt</sma";
 	}
 	document.getElementById("currentDateTime").innerHTML = moment().format('MMMM Do YYYY, h:mm:ss a');
 }
-setInterval(setCurrentDateTime, 100);
+setInterval(setCurrentDateTime, 0);

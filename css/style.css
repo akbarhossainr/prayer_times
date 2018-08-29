@@ -43,3 +43,8 @@ tr.active th {
 	font-size: 10pt;
 	margin: 0;
 }
+
+.right-side {
+	background-color: #FAFAFA;
+	height: 100vh;
+}

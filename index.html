@@ -8,31 +8,32 @@
 	<link rel="icon" href="assets/mecca 16x16.png" type="image/gif">
 </head>
 <body>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-4">
+			<div class="col-4 pl-5 pr-5">
 				<div class="btn-group btn-group-sm btn-group-toggle mb-2 mt-2" data-toggle="buttons">
-					<label class="btn btn-secondary active">
-						<input type="radio" name="lang" id="lang-en" value="en" autocomplete="off" checked> English
-					</label>
 					<label class="btn btn-secondary">
-						<input type="radio" name="lang" id="lang-bn" value="bn" autocomplete="off"> বাংলা
+						<input type="radio" name="lang" id="lang-en" value="en" autocomplete="off"> English
+					</label>
+					<label class="btn btn-secondary active">
+						<input type="radio" name="lang" id="lang-bn" value="bn" autocomplete="off" checked> বাংলা
 					</label>
 				</div>
 
 				<div class="card">
 					<div class="card-header">
-						<h5 class="card-title mb-1">Prayer Times</h5>
+						<h5 class="card-title mb-1" id="table_header_title">Prayer Times</h5>
 						<p id="currentDateTime"></p>
 					</div>
 					<div class="card-body">
 						<div id="divShowPrayTimes"></div>
 					</div>
 				</div>
-				<small class="text-muted p-2">* Highlited row define the current waqt</small>
+				<small class="text-muted p-2" id="footer_note">* Highlited row define the current waqt</small>
 			</div>
-			<div class="col">
-
+			<div class="col right-side p-5">
+				<h3 class="display-4">Prayer Times</h3>
+				<p>Showing you the actual prayet times according to the lattitude and longitude given by you.</p>
 			</div>
 		</div>
 	</div>
