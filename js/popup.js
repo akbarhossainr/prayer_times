@@ -45,7 +45,8 @@ function getLocation() {
 function error(error) {
 	// console.log(error.code, error.message);
 	if (error.code == 2) {
-		showPrayTimes(0, 0, prayTimes);
+		console.log("Prayer time generating according to Dhaka's coordinates");
+		showPrayTimes(23.8043699, 90.3997218, prayTimes);
 	}
 }
 
