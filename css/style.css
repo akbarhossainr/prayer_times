@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=ABeeZee');
+/* @import url('https://fonts.googleapis.com/css?family=ABeeZee'); */
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
 body {
@@ -47,4 +47,8 @@ tr.active th {
 .right-side {
 	background-color: #FAFAFA;
 	height: 100vh;
+}
+
+#notification_panel {
+	display: none;
 }

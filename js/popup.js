@@ -43,11 +43,24 @@ function getLocation() {
 }
 
 function error(error) {
-	// console.log(error.code, error.message);
-	if (error.code == 2) {
-		console.log("Prayer time generating according to Dhaka's coordinates");
-		showPrayTimes(23.8043699, 90.3997218, prayTimes);
+	switch(error.code) {
+		case error.PERMISSION_DENIED:
+		var message = "User denied the request for Geolocation."
+		  break;
+		  case error.POSITION_UNAVAILABLE:
+		  var message = "Location information is unavailable."
+		  break;
+		  case error.TIMEOUT:
+		  var message = "The request to get user location timed out."
+		  break;
+		case error.UNKNOWN_ERROR:
+		var message = "An unknown error occurred."
+		break;
 	}
+	console.log(message);
+	document.getElementById("notification_message").innerHTML = "<strong>Warning!</strong> "+message+" Time showing according to <strong>Dhaka, Bangladesh</strong>";
+	document.getElementById("notification_panel").style.display = 'block';
+	showPrayTimes(23.8043699, 90.3997218, prayTimes);
 }
 
 function showPosition(position) {
@@ -93,30 +106,39 @@ function showPrayTimes(lat, long, prayTimes) {
 				if (list[i] != 'Sunrise' && list[i] != 'Sunset' && list[i] != 'Midnight') {
 					currentWaqt = 'bg-success';
 				}
-
+			}
+			if(list[i+1]){
 				nextPrayerTime = moment(prayerTimes[list[i+1].toLowerCase()], 'hh:mm a');
 				nextPrayerTimeName = list[i+1];
-				if (list[i+1] == 'Sunrise' || list[i+1] == 'Sunset' || list[i+1] == 'Midnight') {
-					if (list[i+1] == 'Midnight') {
-						nextPrayerTime = prayerTimes[list[0].toLowerCase()];
-						nextPrayerTimeName = list[0];
-						if($("input[name='lang']:checked").val() === 'bn'){
-							nextPrayerTimeName = listBN[0];
-						}
-					}else{
-						nextPrayerTime = prayerTimes[list[i+2].toLowerCase()];
-						nextPrayerTimeName = list[i+2];
-						if($("input[name='lang']:checked").val() === 'bn'){
-							nextPrayerTimeName = listBN[i+2];
-						}
+			}else{
+				nextPrayerTime = moment(prayerTimes[list[0].toLowerCase()], 'hh:mm a');
+				nextPrayerTimeName = list[0];
+			}
+
+			if (list[i+1] == 'Sunrise' || list[i+1] == 'Sunset' || list[i+1] == 'Midnight') {
+				if ((list[i+1]) || list[i+1] == 'Midnight') {
+					nextPrayerTime = prayerTimes[list[0].toLowerCase()];
+					nextPrayerTimeName = list[0];
+					if($("input[name='lang']:checked").val() === 'bn'){
+						nextPrayerTimeName = listBN[0];
 					}
-					nextPrayerTime = moment(nextPrayerTime, 'hh:mm a');
+				}else{
+					nextPrayerTime = prayerTimes[list[i+2].toLowerCase()];
+					nextPrayerTimeName = list[i+2];
+					if($("input[name='lang']:checked").val() === 'bn'){
+						nextPrayerTimeName = listBN[i+2];
+					}
 				}
-				
-				nextPrayerTimeRemaining = moment(nextPrayerTime.diff(moment())).utc().format('HH:mm:ss');
-				if($("input[name='lang']:checked").val() === 'bn'){
-					nextPrayerTimeRemaining = en_to_bn_number_conversion(moment(nextPrayerTime.diff(moment())).utc().format('HH:mm:ss'));
+				nextPrayerTime = moment(nextPrayerTime, 'hh:mm a');
+			}
+			
+			nextPrayerTimeRemaining = moment(nextPrayerTime.diff(moment())).utc().format('HH:mm:ss');
+			if($("input[name='lang']:checked").val() === 'bn'){
+				nextPrayerTimeRemaining = en_to_bn_number_conversion(moment(nextPrayerTime.diff(moment())).utc().format('HH:mm:ss'));
+				if(listBN[i+1]){
 					nextPrayerTimeName = listBN[i+1];
+				}else{
+					nextPrayerTimeName = listBN[0];
 				}
 			}
 		}
@@ -145,6 +167,7 @@ function showPrayTimes(lat, long, prayTimes) {
 	document.getElementById('divShowPrayTimes').innerHTML = html;
 }
 
+// getLocation();
 setInterval(getLocation, 0);
 
 // Set current date and time on card header
