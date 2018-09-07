@@ -154,8 +154,8 @@ function showPrayTimes(lat, long, prayTimes) {
 	document.getElementById('divShowPrayTimes').innerHTML = html;
 }
 
-// getLocation();
-setInterval(getLocation, 0);
+getLocation();
+// setInterval(getLocation, 0);
 
 // Set current date and time on card header
 function setCurrentDateTime() {
