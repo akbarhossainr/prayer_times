@@ -1,4 +1,5 @@
-# ![N](https://github.com/akbarhossainr/prayer_times/blob/master/assets/mecca%2032x32.png?raw=true) Prayer Times
+
+# ![Logo](https://github.com/akbarhossainr/prayer_times/blob/master/assets/mecca%2032x32.png?raw=true) Prayer Times
 
   - Know you the exact prayer time duration according to the coordinates taken from the browser.
   - `Works on offline`.
@@ -7,10 +8,20 @@
   - `English & Bengali` langugae support.
 
 
-##### Upcomming Features!
+## Upcomming Features!
 
   - `Sahri and Iftar` calendar.
   - `Random Hadith` every prayer time.
 
+## Author
+- Development and Idea: [Akbar Hossain Robin](https://akbarhossainr.github.io/)
 
->Note: This is an open source project. Contribute to add more new features.
+## Credits
+- [PrayTimes.org](http://praytimes.org/)
+- [Moment.js](https://momentjs.com/)
+
+## License
+Prayer Times licensed under the  [MIT License]().
+
+## Screenshot
+![Screenshot](https://github.com/akbarhossainr/prayer_times/blob/master/assets/screenshot.png?raw=true)
