@@ -126,6 +126,18 @@ function showPrayTimes(lat, long, prayTimes) {
 					nextPrayerTimeRemaining = en_to_bn_number_conversion(moment(nextPrayerTime.diff(moment())).utc().format('HH:mm:ss'));
 					nextPrayerTimeName = listBN[nextPrayerTimeNameIndex];
 				}
+
+				// send slack notification to PrayerTimeNotification App
+				// var jamat_time = '';
+				// if(list[i] == 'Dhuhr'){
+				// 	jamat_time = moment(prayerTimes[list[i].toLowerCase()], 'hh:mm A').add(1, "hours").format('hh:mm A');
+				// }else if(list[i] == 'Asr'){
+				// 	jamat_time = moment(prayerTimes[list[i].toLowerCase()], 'hh:mm A').add(30, "minutes").format('hh:mm A');					
+				// }else if(list[i] == 'Maghrib'){
+				// 	jamat_time = moment(prayerTimes[list[i].toLowerCase()], 'hh:mm A').add(10, "minutes").format('hh:mm A');
+				// }
+				// var message = list[i]+' Jamat time will be held at '+jamat_time;
+				// sendNotification(message);
 			}
 		}
 		
@@ -171,3 +183,18 @@ function setCurrentDateTime() {
 	document.getElementById("currentDateTime").innerHTML = moment().format('MMMM Do YYYY, h:mm:ss a');
 }
 setInterval(setCurrentDateTime, 0);
+
+
+function sendNotification(message = ''){
+	var url = 'https://hooks.slack.com/services/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';
+	var text = message;
+	$.ajax({
+		data: 'payload=' + JSON.stringify({
+			"text": text
+		}),
+		dataType: 'json',
+		processData: false,
+		type: 'POST',
+		url: url
+	});
+}
